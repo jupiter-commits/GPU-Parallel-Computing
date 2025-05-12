@@ -23,3 +23,17 @@ for i in matrix_sizes:
     device_b = cp.asarray(host_b)
     device_c = cp.asarray(host_c)
     
+    # run on CPU
+    t_cpu_start = time.time()
+    for _ in range(iterations):
+        host_result = host_a @ host_b @ host_c + host_a
+    t_cpu = time.time() - t_cpu_start
+    print(f"  CPU time is {t_cpu:.4f}")
+    
+    # run on GPU
+    t_gpu_start = time.time()
+    for _ in range(iterations):
+        device_result = device_a @ device_b @ device_c + device_a
+    cp.cuda.Stream.null.synchronize()
+    t_gpu = time.time() - t_gpu_start
+    print(f"  GPU time is {t_gpu:.4f}\n")
