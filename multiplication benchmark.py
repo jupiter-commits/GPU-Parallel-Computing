@@ -37,3 +37,9 @@ for i in matrix_sizes:
     cp.cuda.Stream.null.synchronize()
     t_gpu = time.time() - t_gpu_start
     print(f"  GPU time is {t_gpu:.4f}\n")
+
+    t_cpu_per_size[int(math.log(i, 4))-1] = t_cpu
+    t_gpu_per_size[int(math.log(i, 4))-1] = t_gpu
+
+t_cpu_per_size = t_cpu_per_size[2:]
+t_gpu_per_size = t_gpu_per_size[2:]
