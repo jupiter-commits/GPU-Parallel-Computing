@@ -43,3 +43,12 @@ for i in matrix_sizes:
 
 t_cpu_per_size = t_cpu_per_size[2:]
 t_gpu_per_size = t_gpu_per_size[2:]
+
+# Plotting benchmarks
+plt.title("Execution time")
+plt.xlabel("Matrix size")
+plt.ylabel("Time")
+plt.plot(matrix_sizes, t_cpu_per_size, color="red", label = "CPU")
+plt.plot(matrix_sizes, t_gpu_per_size, color="blue", label = "GPU", marker="o")
+plt.legend()
+plt.show()
