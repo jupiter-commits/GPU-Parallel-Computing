@@ -12,6 +12,24 @@ int main(){
     hostB = new float[elements];
     hostC = new float[elements];
     hostResult = new float[elements];
+    
+    for (int i=0; i<elements; i++){
+        hostA[i] = rand();
+        hostB[i] = rand();
+        hostC[i] = rand();
+    }
+    
+     // Allocate in device memory space
+    cudaMalloc(&deviceA, elements*sizeof(float));
+    cudaMalloc(&deviceB, elements*sizeof(float));
+    cudaMalloc(&deviceC, elements*sizeof(float));
+    cudaMalloc(&deviceResult, elements*sizeof(float));
+
+    cudaMemcpy(deviceA, hostA, elements*sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(deviceB, hostB, elements*sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(deviceC, hostC, elements*sizeof(float), cudaMemcpyHostToDevice);
+    
+    printf("Finished execution\n");
 
     return 0;
 }
