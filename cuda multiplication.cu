@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+__global__ matrixMultiply(const float *matA, const float *matB, const float *r, int matrixSize){
+    int indexColumn = threadIdx.x + blockDimx.x * blockIdx.x;
+    int indexRow = threadIdx.y + blockDimx.y + blockIdx.y;
+
+}
+
 __global__ expressionCalculator(const float *A, const float *B, const float *C, const float *result, int matrixSize){
 }
 
