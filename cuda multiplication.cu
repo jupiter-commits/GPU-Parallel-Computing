@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+const int MATRIX_SIZE = 256;
+const int BLOCK_SIZE = 16;
+dim3 blockSize(BLOCK_SIZE, BLOCK_SIZE);
+
 __global__ matrixMultiply(const float *matA, const float *matB, const float *r, int matrixSize){
     int indexColumn = threadIdx.x + blockDimx.x * blockIdx.x;
     int indexRow = threadIdx.y + blockDimx.y + blockIdx.y;
